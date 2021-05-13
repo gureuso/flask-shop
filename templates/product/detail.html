@@ -35,7 +35,23 @@
 {% block script %}
   <script>
     function buy() {
-
+      let data = {
+        'product_ids': [{{ product.id }}],
+        'product_cnt': [1],
+      };
+      data.product_ids = data.product_ids.join(',');
+      data.product_cnt = data.product_cnt.join(',');
+      $.ajax({
+        url: `{{ url_for('apis_orders.create_order') }}`,
+        type: "POST",
+        data: data,
+        success: function(data) {
+          window.location.href = "{{ url_for('orders.index') }}"
+        },
+        error(xhr) {
+          alert(`${xhr.status} / ${xhr.responseJSON['message']}`);
+        }
+      });
     }
 
     function addCart() {

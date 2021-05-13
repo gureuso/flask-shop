@@ -79,7 +79,7 @@ def signup():
         if form.email.errors or form.nickname.errors:
             return render_template('users/signup.html', form=form)
 
-        user = User(email=form.email.data, nickname=form.nickname.data, password=SHA256.encrypt(form.password.data), price=1000000)
+        user = User(email=form.email.data, nickname=form.nickname.data, password=SHA256.encrypt(form.password.data), point=1000000)
         db.session.add(user)
         db.session.commit()
 

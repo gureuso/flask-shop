@@ -166,7 +166,7 @@ class UserMixin:
     email = db.Column(db.String(120), unique=True)
     nickname = db.Column(db.String(20), unique=True)
     password = db.Column(db.String(255))
-    price = db.Column(db.Integer)
+    point = db.Column(db.Integer)
 
 
 class TestUserModel(UserMixin, flask_login.UserMixin, db.Model):
